@@ -1,12 +1,18 @@
 var jsc = require("jsverify");
 var _ = require('lodash');
 
-var camelCaseIdempotent =
-  jsc.forall("asciinestring", function (str) {
-    console.log("testing '" + str + "'");
-    return _.isEqual(_.camelCase(_.camelCase(str)), _.camelCase(str));
+var sortIdempotent =
+  jsc.forall("string -> nat", "array string", function (f, arr) {
+    return _.isEqual(_.sortBy(_.sortBy(arr, f), f), _.sortBy(arr, f));
   });
 
-jsc.check(camelCaseIdempotent);
+var intersectionAssociative =
+  jsc.forall("array", "array", function (a1, a2) {
+    return _.isEqual(_.intersection(a1, a2), _.intersection(a2, a1));
+  });
 
-console.log(_.camelCase('0aW'), _.camelCase(_.camelCase('0aW')));
+console.log('sortIdempotent');
+jsc.check(sortIdempotent);
+
+console.log('intersectionAssociative');
+jsc.check(intersectionAssociative);

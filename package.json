@@ -27,7 +27,8 @@
     "test:doc": "markdown-doctest doc/*.md",
     "test:fp": "node test/test-fp",
     "test:main": "node test/test",
-    "validate": "npm run style && npm run test"
+    "validate": "npm run style && npm run test",
+    "test2": "node test/test2.js"
   },
   "devDependencies": {
     "async": "^2.1.4",
