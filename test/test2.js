@@ -6,7 +6,7 @@ var sortIdempotent =
     return _.isEqual(_.sortBy(_.sortBy(arr, f), f), _.sortBy(arr, f));
   });
 
-var intersectionAssociative =
+var intersectionCommutative =
   jsc.forall("array", "array", function (a1, a2) {
     return _.isEqual(_.intersection(a1, a2), _.intersection(a2, a1));
   });
@@ -14,5 +14,5 @@ var intersectionAssociative =
 console.log('sortIdempotent');
 jsc.check(sortIdempotent);
 
-console.log('intersectionAssociative');
-jsc.check(intersectionAssociative);
+console.log('intersectionCommutative');
+jsc.check(intersectionCommutative);
